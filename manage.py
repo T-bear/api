@@ -21,6 +21,7 @@ def readPin(pin):
       GPIO.setup(int(pin), GPIO.IN)
       if GPIO.input(int(pin)) == True:
          response = "Pin number " + pin + " is high!"
+         print("pushed")
       else:
          response = "Pin number " + pin + " is low!"
    except:
@@ -32,6 +33,11 @@ def readPin(pin):
       }
 
    return render_template('pin.html', **templateData)
+
+@app.route("/send")
+def send_message():
+   sse.publish({"message": "hello"}, type='greeting')
+   return "Message sent!"
 
 
 if __name__ == "__main__":
