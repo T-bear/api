@@ -1,5 +1,5 @@
 function myDiv() {
-	$( "#here" ).load( "pin.html #event" );
+return $( "#here" ).load(document.URL + ' #here');
 }
 
-setInterval(myDiv,3000);
+setInterval(myDiv(),3000);
