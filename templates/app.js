@@ -3,3 +3,7 @@ function myDiv() {
 }
 
 setInterval(myDiv,3000);
+return $( "#here" ).load(document.URL + ' #here');
+}
+
+setInterval(myDiv(),3000);
