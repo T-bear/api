@@ -1,7 +1,10 @@
 from flask import Flask, render_template
 import datetime
 import RPi.GPIO as GPIO
+from flask_sse import sse
 app = Flask(__name__)
+app.config["REDIS_URL"] = "redis://0.0.0.0:8000/"
+app.register_blueprint(sse, url_prefix='/stream')
 
 GPIO.setmode(GPIO.BCM)
 
@@ -36,6 +39,7 @@ def readPin(pin):
 
 @app.route("/send")
 def send_message():
+   print("yes")
    sse.publish({"message": "hello"}, type='greeting')
    return "Message sent!"
 
